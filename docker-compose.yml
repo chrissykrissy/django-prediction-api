@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django_model_server
+    ports:
+      - "8000:8000"  # Django 서버 포트
+    volumes:
+      - .:/app  # 프로젝트 디렉토리 마운트
+    environment:
+      DJANGO_SETTINGS_MODULE: "predictAPI.settings"  # 프로젝트 설정
+    command: python manage.py runserver 0.0.0.0:8000
